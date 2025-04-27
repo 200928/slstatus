@@ -63,17 +63,78 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
+// static const struct arg args[] = {
+//     // 网络速度
+//     { netspeed_rx,   "⬇ %s ",      "wlp4s0" },  // 下载速度
+//     { netspeed_tx,   "⬆ %s |  ",   "wlp4s0" },  // 上传速度
+//
+//     // CPU 信息
+//     { cpu_perc,      "⚙ CPU:%s%%",      NULL },  // CPU 使用率
+//     { cpu_freq,      "-%sHz |  ",             NULL },  // CPU 频率
+//     { run_command,   "ἲ1 %s |  ",         "/home/ming/scripts/check_cpu_temp.sh" }, // CPU 温度
+//
+//     // 内存信息
+//     { ram_perc,      "ὋB RAM:%s%%",      NULL },  // 内存使用率
+//     { ram_free,      "-%s |  ",                NULL },  // 空闲内存
+//
+//     // 交换分区 (Swap)
+//     { swap_perc,     "♻ S:%s%%  |  ",     NULL },  // 交换分区使用率
+//
+//     // 磁盘信息
+//     { disk_free,     "ὋE D:%s",         "/" },   // 根目录剩余空间
+//     { disk_free,     "-%s |  ",                "/home" },  // /home 目录剩余空间
+//
+//     // 音量和亮度
+//     { run_command,   "🎧 V:%s |  ",    "/home/ming/scripts/check_vol.sh" }, // 音量
+//     { run_command,   "🔦 L:%s |  ",    "light" },                         // 亮度
+//
+//     // 电池信息
+//     { battery_perc,  "🔋 B:%s%%",     "BAT1" },  // 电池电量
+//     { run_command,   "-%s/",                   "/home/ming/scripts/battery_rate.sh" }, // 电池充电速率
+//     { battery_state, "%s |  ",                 "BAT1" }, // 电池状态 (充电/放电)
+//
+//     // 日期与时间
+//     { datetime,      "🕒 %s",        "%F %T" }  // 日期 & 时间
+// };
 static const struct arg args[] = {
-	/* function format          argument */
-	{ run_command,		"Ker:%s | ",		"/home/minghui/scripts/check_ker.sh" },
+    { netspeed_rx,   "↓:%s ",      "wlp4s0" },  // 替换 "wlan0" 为你的接口名
+    { netspeed_tx,   "↑:%s | ",  "wlp4s0" },  // 替换 "wlan0" 为你的接口名
 	{ cpu_perc,		"CPU:%s%%",		NULL },
-	{ run_command,		"/%s| ",		"/home/minghui/scripts/check_cpu_temp.sh" },
+	{ cpu_freq,		"-%sHz",		NULL },
+	{ run_command,		"-%s | ",		"/home/ming/scripts/check_cpu_temp.sh" },
 	{ ram_perc,		"RAM:%s%%",		NULL },
-	{ ram_free,		"/%s%% | ",		NULL },
-	{ disk_free,		"Disk:%s | ",		"/" },
-	{ run_command,		"VOL:%s | ",		"/home/minghui/scripts/check_vol.sh" },
-	{ run_command,		"LIGHT:%s | ",		"light" },
+	{ ram_free,		"-%s ",		NULL },
+	{ swap_perc,	"-S:%s%% | ",		NULL },
+	{ disk_free,		"D:%s",		"/" },
+	{ disk_free,		"-%s | ",		"/home" },
+	{ run_command,		"V:%s | ",		"/home/ming/scripts/check_vol.sh" },
+	{ run_command,		"L:%s | ",		"light" },
 	//{ run_command,	"MIC:%s | ",		"/home/minghui/scripts/check_mic.sh" },
-	{ battery_perc,		"BAT:%s%% | ",		"BAT1" },
+	{ battery_perc,		"B:%s%%",		"BAT1" },
+	{ run_command,		"-%s/",		"/home/ming/scripts/battery_rate.sh" },
+	{ battery_state,		"%s | ",		"BAT1" },
 	{ datetime, 		"%s ",           	"%F %T" },
+
+	/* function format          argument */
+	// { cpu_perc,		"🌹:%s%%",		NULL },
+	// { run_command,		"/%s ",		"/home/minghui/scripts/check_cpu_temp.sh" },
+	// { ram_perc,		"💪:%s%%",		NULL },
+	// { ram_free,		"/%s  ",		NULL },
+	// { disk_free,		"💿:%s  ",		"/" },
+	// { run_command,		"🔔:%s  ",		"/home/minghui/scripts/check_vol.sh" },
+	// { run_command,		"🔥:%s  ",		"light" },
+	// //{ run_command,	"MIC:%s | ",		"/home/minghui/scripts/check_mic.sh" },
+	// { battery_perc,		":%s%%  ",		"BAT1" },
+
+	// { run_command,		"Ker:%s | ",		"/home/minghui/scripts/check_ker.sh" },
+	// { cpu_perc,		"CPU:%s%%",		NULL },
+	// { run_command,		"/%s| ",		"/home/minghui/scripts/check_cpu_temp.sh" },
+	// { ram_perc,		"RAM:%s%%",		NULL },
+	// { ram_free,		"/%s% | ",		NULL },
+	// { disk_free,		"D:%s | ",		"/" },
+	// { run_command,		"V:%s | ",		"/home/minghui/scripts/check_vol.sh" },
+	// { run_command,		"L:%s | ",		"light" },
+	// //{ run_command,	"MIC:%s | ",		"/home/minghui/scripts/check_mic.sh" },
+	// { battery_perc,		"B:%s%%",		"BAT1" },
+	// // { datetime, 		"%s ",           	"%F %T" },
 };
